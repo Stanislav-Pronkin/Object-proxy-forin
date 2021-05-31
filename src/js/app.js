@@ -1,6 +1,7 @@
 // TODO: write your code here
 
 export default function orderByProps(obj, order = []) {
+  const copyObj = obj;
   const sortArray = [];
   const tempArray = [];
   let orderArray = [];
@@ -9,19 +10,19 @@ export default function orderByProps(obj, order = []) {
     order.forEach((element) => {
       const item = {};
 
-      item.key = element,
-      item.value = obj[element];
+      item.key = element;
+      item.value = copyObj[element];
       sortArray.push(item);
-      delete obj[element];
+      delete copyObj[element];
     });
   }
 
 
-  for (const prop in obj) {
-    if (Object.hasOwnProperty.call(obj, prop)) {
+  for (const prop in copyObj) {
+    if (Object.hasOwnProperty.call(copyObj, prop)) {
       const el = {};
       el.key = prop;
-      el.value = obj[prop];
+      el.value = copyObj[prop];
       tempArray.push(el);
     }
   }
